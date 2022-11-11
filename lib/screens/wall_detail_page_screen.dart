@@ -16,9 +16,9 @@ import '../utils/download_wall.dart';
 
 class WallDetailScreen extends StatefulWidget {
   final WallModel currentWall;
-  final int index;
+
   const WallDetailScreen(
-      {Key? key, required this.currentWall, required this.index})
+      {Key? key, required this.currentWall,})
       : super(key: key);
 
   @override
@@ -85,7 +85,7 @@ class _WallDetailScreenState extends State<WallDetailScreen> {
     var primaryC =
         domiColor.computeLuminance() > 0.5 ? Colors.white : Colors.black;
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: domiColor,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         toolbarHeight: 100,
@@ -150,273 +150,279 @@ class _WallDetailScreenState extends State<WallDetailScreen> {
           ),
         ),
       ),
-      body: Stack(
-        alignment: AlignmentDirectional.bottomCenter,
-        children: [
-          PhotoView(
-            loadingBuilder: (context, event) {
-              return Center(
-                  child: SizedBox(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
-                child: CachedNetworkImage(
-                  imageUrl: widget.currentWall.thumb!,
-                ),
-              ));
-            },
-            initialScale: PhotoViewComputedScale.covered,
-            maxScale: PhotoViewComputedScale.covered * 2,
-            minScale: PhotoViewComputedScale.covered,
-            imageProvider: CachedNetworkImageProvider(widget.currentWall.url!),
-          ),
-          Container(
-            padding: const EdgeInsets.only(bottom: 40),
-            margin: const EdgeInsets.symmetric(horizontal: 40),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Stack(
-                  children: [
-                    AnimatedOpacity(
-                      curve: Curves.ease,
-                      opacity: opacityInfo,
-                      duration: const Duration(milliseconds: 200),
-                      child: AnimatedContainer(
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        color: domiColor,
+        child: Stack(
+          alignment: AlignmentDirectional.bottomCenter,
+          children: [
+            PhotoView(
+              loadingBuilder: (context, event) {
+                return Center(
+                    child: SizedBox(
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
+                  child: CachedNetworkImage(
+                    fit: BoxFit.cover,
+                    imageUrl: widget.currentWall.thumb!,
+                  ),
+                ));
+              },
+              initialScale: PhotoViewComputedScale.covered,
+              maxScale: PhotoViewComputedScale.covered * 2,
+              minScale: PhotoViewComputedScale.covered,
+              imageProvider: CachedNetworkImageProvider(widget.currentWall.url!),
+            ),
+            Container(
+              padding: const EdgeInsets.only(bottom: 40),
+              margin: const EdgeInsets.symmetric(horizontal: 40),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Stack(
+                    children: [
+                      AnimatedOpacity(
+                        curve: Curves.ease,
+                        opacity: opacityInfo,
                         duration: const Duration(milliseconds: 200),
-                        width: MediaQuery.of(context).size.width * 0.8,
-                        height: MediaQuery.of(context).size.width * 0.8,
-                        decoration: BoxDecoration(
-                          color: accentC,
-                          borderRadius: BorderRadius.circular(
-                              Dimensions.smallCornerRadius),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 24.0, horizontal: 20),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      SizedBox(
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.53,
-                                        child: CustomText(
-                                          textName: widget.currentWall.name!
-                                              .capitalizeFirstOfEach,
-                                          softWrap: true,
-                                          textOverflow: TextOverflow.ellipsis,
-                                          maxLines: 1,
-                                          fontSize: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.035,
-                                          textColor: primaryC,
-                                          fontWeight: FontWeight.bold,
-                                          letterSpacing: 1,
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 4,
-                                      ),
-                                      SizedBox(
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.53,
-                                        child: CustomText(
-                                          textName: widget.currentWall.category!
-                                              .capitalizeFirstOfEach,
-                                          softWrap: true,
-                                          textOverflow: TextOverflow.ellipsis,
-                                          maxLines: 1,
-                                          textColor: primaryC,
-                                          fontSize: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.025,
-                                          fontWeight: FontWeight.w600,
-                                          letterSpacing: 1,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  IconButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        opacityInfo = 0;
-                                      });
-                                    },
-                                    icon: Icon(
-                                      Iconsax.close_circle,
-                                      color: primaryC,
-                                      size: 40,
-                                    ),
-                                  )
-                                ],
-                              ),
-                              SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.01,
-                              ),
-                              CustomButton(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 20, vertical: 14),
-                                  backgroundColor: domiColor,
-                                  buttonContent: CustomText(
-                                    textName: "Info",
-                                    textColor:
-                                        domiColor.computeLuminance() > 0.5
-                                            ? Colors.black
-                                            : Colors.white,
-                                    fontSize: 18,
-                                  )),
-                              SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.01,
-                              ),
-                              InfoTile(
-                                  title: "Author",
-                                  primaryC: primaryC,
-                                  end: widget.currentWall.auther!
-                                      .capitalizeFirstOfEach),
-                              InfoTile(
-                                  title: "Dimensions",
-                                  primaryC: primaryC,
-                                  end: "$imageHeight × $imageWidth"),
-                              SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.01,
-                              ),
-                              SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.06,
-                                child: ListView.builder(
-                                    scrollDirection: Axis.horizontal,
-                                    shrinkWrap: true,
-                                    itemCount: colors?.length ?? 5,
-                                    itemBuilder: (context, index) {
-                                      return GestureDetector(
-                                        onTap: () {
-                                          Clipboard.setData(ClipboardData(
-                                              text: colors!
-                                                  .elementAt(index)
-                                                  .toString()));
-                                          void color(Color color) {
-                                            Fluttertoast.cancel();
-                                            Fluttertoast.showToast(
-                                              msg:
-                                                  "Color code copied to clipboard",
-                                              toastLength: Toast.LENGTH_LONG,
-                                              gravity: ToastGravity.BOTTOM,
-                                              textColor:
-                                                  color.computeLuminance() > 0.5
-                                                      ? Colors.black
-                                                      : Colors.white,
-                                              backgroundColor: color,
-                                            );
-                                          }
-
-                                          color(colors?.elementAt(index) ??
-                                              Colors.white);
-                                        },
-                                        child: Container(
-                                          margin: const EdgeInsets.symmetric(
-                                              horizontal: 6),
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(360),
-                                            color: colors?.elementAt(index) ??
-                                                Colors.white,
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 200),
+                          width: MediaQuery.of(context).size.width * 0.8,
+                          height: MediaQuery.of(context).size.width * 0.8,
+                          decoration: BoxDecoration(
+                            color: accentC,
+                            borderRadius: BorderRadius.circular(
+                                Dimensions.smallCornerRadius),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 24.0, horizontal: 20),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        SizedBox(
+                                          width:
+                                              MediaQuery.of(context).size.width *
+                                                  0.53,
+                                          child: CustomText(
+                                            textName: widget.currentWall.name!
+                                                .capitalizeFirstOfEach,
+                                            softWrap: true,
+                                            textOverflow: TextOverflow.ellipsis,
+                                            maxLines: 1,
+                                            fontSize: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.035,
+                                            textColor: primaryC,
+                                            fontWeight: FontWeight.bold,
+                                            letterSpacing: 1,
                                           ),
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.06,
                                         ),
-                                      );
-                                    }),
-                              )
-                            ],
+                                        const SizedBox(
+                                          height: 4,
+                                        ),
+                                        SizedBox(
+                                          width:
+                                              MediaQuery.of(context).size.width *
+                                                  0.53,
+                                          child: CustomText(
+                                            textName: widget.currentWall.category!
+                                                .capitalizeFirstOfEach,
+                                            softWrap: true,
+                                            textOverflow: TextOverflow.ellipsis,
+                                            maxLines: 1,
+                                            textColor: primaryC,
+                                            fontSize: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.025,
+                                            fontWeight: FontWeight.w600,
+                                            letterSpacing: 1,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    IconButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          opacityInfo = 0;
+                                        });
+                                      },
+                                      icon: Icon(
+                                        Iconsax.close_circle,
+                                        color: primaryC,
+                                        size: 40,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.01,
+                                ),
+                                CustomButton(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 20, vertical: 14),
+                                    backgroundColor: domiColor,
+                                    buttonContent: CustomText(
+                                      textName: "Info",
+                                      textColor:
+                                          domiColor.computeLuminance() > 0.5
+                                              ? Colors.black
+                                              : Colors.white,
+                                      fontSize: 18,
+                                    )),
+                                SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.01,
+                                ),
+                                InfoTile(
+                                    title: "Author",
+                                    primaryC: primaryC,
+                                    end: widget.currentWall.auther!
+                                        .capitalizeFirstOfEach),
+                                InfoTile(
+                                    title: "Dimensions",
+                                    primaryC: primaryC,
+                                    end: "$imageHeight × $imageWidth"),
+                                SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.01,
+                                ),
+                                SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.06,
+                                  child: ListView.builder(
+                                      scrollDirection: Axis.horizontal,
+                                      shrinkWrap: true,
+                                      itemCount: colors?.length ?? 5,
+                                      itemBuilder: (context, index) {
+                                        return GestureDetector(
+                                          onTap: () {
+                                            Clipboard.setData(ClipboardData(
+                                                text: colors!
+                                                    .elementAt(index)
+                                                    .toString()));
+                                            void color(Color color) {
+                                              Fluttertoast.cancel();
+                                              Fluttertoast.showToast(
+                                                msg:
+                                                    "Color code copied to clipboard",
+                                                toastLength: Toast.LENGTH_LONG,
+                                                gravity: ToastGravity.BOTTOM,
+                                                textColor:
+                                                    color.computeLuminance() > 0.5
+                                                        ? Colors.black
+                                                        : Colors.white,
+                                                backgroundColor: color,
+                                              );
+                                            }
+
+                                            color(colors?.elementAt(index) ??
+                                                Colors.white);
+                                          },
+                                          child: Container(
+                                            margin: const EdgeInsets.symmetric(
+                                                horizontal: 6),
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(360),
+                                              color: colors?.elementAt(index) ??
+                                                  Colors.white,
+                                            ),
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.06,
+                                          ),
+                                        );
+                                      }),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    CustomButton(
-                      backgroundColor: domiColor.withOpacity(0.6),
-                      border: Border.all(color: domiColor),
-                      buttonContent: Icon(
-                        Iconsax.info_circle,
-                        color: domiColor.computeLuminance() > 0.5
-                            ? Colors.black
-                            : Colors.white,
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      CustomButton(
+                        backgroundColor: domiColor.withOpacity(0.6),
+                        border: Border.all(color: domiColor),
+                        buttonContent: Icon(
+                          Iconsax.info_circle,
+                          color: domiColor.computeLuminance() > 0.5
+                              ? Colors.black
+                              : Colors.white,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            if (opacityInfo == 1) {
+                              opacityInfo = 0;
+                            } else {
+                              opacityInfo = 1;
+                            }
+                          });
+                        },
                       ),
-                      onPressed: () {
-                        setState(() {
-                          if (opacityInfo == 1) {
+                      CustomButton(
+                        backgroundColor: domiColor.withOpacity(0.6),
+                        border: Border.all(color: domiColor),
+                        buttonContent: Icon(
+                          Iconsax.document_download4,
+                          color: domiColor.computeLuminance() > 0.5
+                              ? Colors.black
+                              : Colors.white,
+                        ),
+                        onPressed: () async {
+                          await downloadWallpaper(
+                              context, widget.currentWall.url!);
+                        },
+                      ),
+                      CustomButton(
+                        backgroundColor: domiColor.withOpacity(0.6),
+                        border: Border.all(color: domiColor),
+                        buttonContent: Icon(
+                          Iconsax.brush_2,
+                          color: domiColor.computeLuminance() > 0.5
+                              ? Colors.black
+                              : Colors.white,
+                        ),
+                        onPressed: () async {
+                          setState(() {
                             opacityInfo = 0;
-                          } else {
-                            opacityInfo = 1;
-                          }
-                        });
-                      },
-                    ),
-                    CustomButton(
-                      backgroundColor: domiColor.withOpacity(0.6),
-                      border: Border.all(color: domiColor),
-                      buttonContent: Icon(
-                        Iconsax.document_download4,
-                        color: domiColor.computeLuminance() > 0.5
-                            ? Colors.black
-                            : Colors.white,
+                          });
+                          await setWallpaper(
+                            context: context,
+                            imgUrl: widget.currentWall.url!,
+                          );
+                        },
                       ),
-                      onPressed: () async {
-                        await downloadWallpaper(
-                            context, widget.currentWall.url!);
-                      },
-                    ),
-                    CustomButton(
-                      backgroundColor: domiColor.withOpacity(0.6),
-                      border: Border.all(color: domiColor),
-                      buttonContent: Icon(
-                        Iconsax.brush_2,
-                        color: domiColor.computeLuminance() > 0.5
-                            ? Colors.black
-                            : Colors.white,
-                      ),
-                      onPressed: () async {
-                        setState(() {
-                          opacityInfo = 0;
-                        });
-                        await setWallpaper(
-                          context: context,
-                          imgUrl: widget.currentWall.url!,
-                        );
-                      },
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          )
-        ],
+                    ],
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

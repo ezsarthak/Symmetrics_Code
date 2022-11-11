@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:main_symmetrics/constants/dimensions.dart';
+import 'package:main_symmetrics/screens/wall_detail_page_screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../components/custom_text.dart';
@@ -30,8 +31,6 @@ class _SwiperCarouselState extends State<SwiperCarousel> {
 
   @override
   Widget build(BuildContext context) {
-
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -53,9 +52,9 @@ class _SwiperCarouselState extends State<SwiperCarousel> {
             CarouselSlider.builder(
               itemCount: swiper.length,
               options: CarouselOptions(
-                autoPlay: true,
-                autoPlayInterval: const Duration(milliseconds: 5000),
-                viewportFraction: 1,
+                  autoPlay: true,
+                  autoPlayInterval: const Duration(milliseconds: 5000),
+                  viewportFraction: 1,
                   height: MediaQuery.of(context).size.width * 0.6,
                   onPageChanged: (index, pageChangeReason) {
                     setState(() {
@@ -64,45 +63,55 @@ class _SwiperCarouselState extends State<SwiperCarousel> {
                   }),
               itemBuilder:
                   (BuildContext context, int index, int pageViewIndex) {
-                return GestureDetector(
-                  onTap: () async {
-                    String url = swiper.elementAt(newIndex).bannerLaunchUrl!;
-                    if (await canLaunch(url)) {
-                      await launch(url);
-                    }
-                  },
-                  child: CachedNetworkImage(
-                    filterQuality: FilterQuality.low,
-                    progressIndicatorBuilder: (context, url, progress) =>
-                        Center(
-                      child: SizedBox(
-                        height: 50,
-                        width: 50,
-                        child: CircularProgressIndicator(
-                          strokeWidth: 5,
-                          value: progress.progress,
-                          color: Theme.of(context).textTheme.labelLarge!.color,
+                return Hero(
+                  tag: swiper.elementAt(index).id!,
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) => WallDetailScreen(
+                                    currentWall: swiper.elementAt(index),
+                                  ))));
+                      // String url = swiper.elementAt(newIndex).bannerLaunchUrl!;
+                      // if (await canLaunch(url)) {
+                      //   await launch(url);
+                      // }
+                    },
+                    child: CachedNetworkImage(
+                      filterQuality: FilterQuality.low,
+                      progressIndicatorBuilder: (context, url, progress) =>
+                          Center(
+                        child: SizedBox(
+                          height: 50,
+                          width: 50,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 5,
+                            value: progress.progress,
+                            color:
+                                Theme.of(context).textTheme.labelLarge!.color,
+                          ),
                         ),
                       ),
-                    ),
-                    errorWidget: (context, url, error) =>
-                        const Center(child: Icon(Icons.error)),
-                    fit: BoxFit.fill,
-                    imageUrl: swiper.elementAt(index).url!,
-                    imageBuilder: (context, imageProvider) {
-                      return Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 12),
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: imageProvider,
-                            fit: BoxFit.fill,
+                      errorWidget: (context, url, error) =>
+                          const Center(child: Icon(Icons.error)),
+                      fit: BoxFit.fill,
+                      imageUrl: swiper.elementAt(index).bannerLaunchUrl!,
+                      imageBuilder: (context, imageProvider) {
+                        return Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 12),
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: imageProvider,
+                              fit: BoxFit.fill,
+                            ),
+                            border: Border.all(color: Colors.black),
+                            borderRadius: BorderRadius.circular(
+                                Dimensions.smallCornerRadius),
                           ),
-                          border: Border.all(color: Colors.black),
-                          borderRadius: BorderRadius.circular(
-                              Dimensions.smallCornerRadius),
-                        ),
-                      );
-                    },
+                        );
+                      },
+                    ),
                   ),
                 );
               },

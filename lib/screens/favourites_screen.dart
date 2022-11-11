@@ -154,7 +154,6 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => WallDetailScreen(
-                                              index: index,
                                               currentWall:
                                                   favoriteWalls.elementAt(index),
                                             )));

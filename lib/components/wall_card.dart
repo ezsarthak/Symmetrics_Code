@@ -43,7 +43,7 @@ class _WallCardState extends State<WallCard> {
                 MaterialPageRoute(
                     builder: (context) => WallDetailScreen(
                           currentWall: widget.currentWall,
-                          index: widget.index,
+
                         )));
           },
           child: Stack(
