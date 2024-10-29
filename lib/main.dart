@@ -5,7 +5,6 @@ import '../utils/shared_preferences.dart';
 import 'constants/app_theme.dart';
 import 'screens/splash_screen.dart';
 import 'utils/theme_provider.dart';
-import 'package:native_notify/native_notify.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,7 +17,7 @@ Future<void> main() async {
       statusBarIconBrightness: Brightness.dark,
     ),
   );
-  NativeNotify.initialize(1868, '8wPumCBZI1VfyWbbOKGbrs', null, null);
+  // NativeNotify.initialize(1868, '8wPumCBZI1VfyWbbOKGbrs', null, null);
 
   runApp(const MyApp());
 }

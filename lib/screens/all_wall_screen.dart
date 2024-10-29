@@ -47,7 +47,7 @@ class _AllWallsScreenState extends State<AllWallsScreen> {
             colors: [
               Theme.of(context).primaryColorDark,
               Theme.of(context).primaryColorLight,
-              Theme.of(context).backgroundColor,
+              Theme.of(context).canvasColor,
             ],
           ),
         ),

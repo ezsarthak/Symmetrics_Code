@@ -19,8 +19,8 @@ class CategoryWallsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var snapshotCategory = snapshotC.data!.where((element) =>
-        (element.category == selectedCategoryName.toString()));
+    var snapshotCategory = snapshotC.data!.where(
+        (element) => (element.category == selectedCategoryName.toString()));
     return Scaffold(
       body: NestedScrollView(
         floatHeaderSlivers: true,
@@ -91,7 +91,7 @@ class CategoryWallsScreen extends StatelessWidget {
               colors: [
                 Theme.of(context).primaryColorDark,
                 Theme.of(context).primaryColorLight,
-                Theme.of(context).backgroundColor,
+                Theme.of(context).canvasColor,
               ],
               // Colors.amber.shade100,
             ),
@@ -99,27 +99,26 @@ class CategoryWallsScreen extends StatelessWidget {
           child: ScrollConfiguration(
             behavior: MyBehavior(),
             child: StaggeredGridView.countBuilder(
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                  scrollDirection: Axis.vertical,
-                  physics: const BouncingScrollPhysics(),
-                  itemCount: snapshotCategory.length,
-                  padding: const EdgeInsets.all(16),
-                  shrinkWrap: true,
-                  addRepaintBoundaries: true,
-                  staggeredTileBuilder: (index) =>
-                      const StaggeredTile.count(2, 3),
-                  crossAxisCount: 4,
-                  itemBuilder: (context, index) {
-                    return Entry.all(
-                      delay: const Duration(milliseconds: 50),
-                      child: WallCard(
-                        index: index,
-                        currentWall: snapshotCategory.elementAt(index),
-                      ),
-                    );
-                  }),
-
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                scrollDirection: Axis.vertical,
+                physics: const BouncingScrollPhysics(),
+                itemCount: snapshotCategory.length,
+                padding: const EdgeInsets.all(16),
+                shrinkWrap: true,
+                addRepaintBoundaries: true,
+                staggeredTileBuilder: (index) =>
+                    const StaggeredTile.count(2, 3),
+                crossAxisCount: 4,
+                itemBuilder: (context, index) {
+                  return Entry.all(
+                    delay: const Duration(milliseconds: 50),
+                    child: WallCard(
+                      index: index,
+                      currentWall: snapshotCategory.elementAt(index),
+                    ),
+                  );
+                }),
           ),
         ),
       ),

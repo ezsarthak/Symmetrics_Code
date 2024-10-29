@@ -22,14 +22,13 @@ class CustomSettingsTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BorderRadius border = BorderRadius.circular(
-        borderRadius ?? Dimensions.smallCornerRadius);
+    BorderRadius border =
+        BorderRadius.circular(borderRadius ?? Dimensions.smallCornerRadius);
     return Material(
       color: Colors.transparent,
       child: ListTile(
         tileColor: Theme.of(context).cardColor,
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 24, vertical: 4),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
         visualDensity: VisualDensity.adaptivePlatformDensity,
         // minVerticalPadding: 2,
         enableFeedback: true,

@@ -53,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
             colors: [
               Theme.of(context).primaryColorDark,
               Theme.of(context).primaryColorLight,
-              Theme.of(context).backgroundColor,
+              Theme.of(context).canvasColor,
             ],
           ),
         ),
@@ -133,13 +133,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   snapshotF: widget.snapshotH,
                 ),
               ),
-              const SizedBox(height: 30),
-              Entry.all(
-                delay: const Duration(milliseconds: 20),
-                child: SpecialWallsView(
-                  snapshotA: widget.snapshotH,
-                ),
-              ),
+              // const SizedBox(height: 30),
+              // Entry.all(
+              //   delay: const Duration(milliseconds: 20),
+              //   child: SpecialWallsView(
+              //     snapshotA: widget.snapshotH,
+              //   ),
+              // ),
             ],
           ),
         ),

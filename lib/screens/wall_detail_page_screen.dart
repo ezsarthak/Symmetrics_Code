@@ -16,10 +16,13 @@ import '../utils/download_wall.dart';
 
 class WallDetailScreen extends StatefulWidget {
   final WallModel currentWall;
+  final bool isswiper;
 
-  const WallDetailScreen(
-      {Key? key, required this.currentWall,})
-      : super(key: key);
+  const WallDetailScreen({
+    Key? key,
+    required this.currentWall,
+    required this.isswiper,
+  }) : super(key: key);
 
   @override
   State<WallDetailScreen> createState() => _WallDetailScreenState();
@@ -159,20 +162,23 @@ class _WallDetailScreenState extends State<WallDetailScreen> {
           children: [
             PhotoView(
               loadingBuilder: (context, event) {
-                return Center(
-                    child: SizedBox(
-                  height: MediaQuery.of(context).size.height,
-                  width: MediaQuery.of(context).size.width,
-                  child: CachedNetworkImage(
-                    fit: BoxFit.cover,
-                    imageUrl: widget.currentWall.thumb!,
-                  ),
-                ));
+                return widget.isswiper
+                    ? const Center(child: CircularProgressIndicator())
+                    : Center(
+                        child: SizedBox(
+                        height: MediaQuery.of(context).size.height,
+                        width: MediaQuery.of(context).size.width,
+                        child: CachedNetworkImage(
+                          fit: BoxFit.cover,
+                          imageUrl: widget.currentWall.thumb!,
+                        ),
+                      ));
               },
               initialScale: PhotoViewComputedScale.covered,
               maxScale: PhotoViewComputedScale.covered * 2,
               minScale: PhotoViewComputedScale.covered,
-              imageProvider: CachedNetworkImageProvider(widget.currentWall.url!),
+              imageProvider:
+                  CachedNetworkImageProvider(widget.currentWall.url!),
             ),
             Container(
               padding: const EdgeInsets.only(bottom: 40),
@@ -207,14 +213,16 @@ class _WallDetailScreenState extends State<WallDetailScreen> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
                                         SizedBox(
-                                          width:
-                                              MediaQuery.of(context).size.width *
-                                                  0.53,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.53,
                                           child: CustomText(
                                             textName: widget.currentWall.name!
                                                 .capitalizeFirstOfEach,
@@ -234,11 +242,14 @@ class _WallDetailScreenState extends State<WallDetailScreen> {
                                           height: 4,
                                         ),
                                         SizedBox(
-                                          width:
-                                              MediaQuery.of(context).size.width *
-                                                  0.53,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.53,
                                           child: CustomText(
-                                            textName: widget.currentWall.category!
+                                            textName: widget
+                                                .currentWall
+                                                .category!
                                                 .capitalizeFirstOfEach,
                                             softWrap: true,
                                             textOverflow: TextOverflow.ellipsis,
@@ -323,7 +334,8 @@ class _WallDetailScreenState extends State<WallDetailScreen> {
                                                 toastLength: Toast.LENGTH_LONG,
                                                 gravity: ToastGravity.BOTTOM,
                                                 textColor:
-                                                    color.computeLuminance() > 0.5
+                                                    color.computeLuminance() >
+                                                            0.5
                                                         ? Colors.black
                                                         : Colors.white,
                                                 backgroundColor: color,
@@ -392,10 +404,10 @@ class _WallDetailScreenState extends State<WallDetailScreen> {
                               ? Colors.black
                               : Colors.white,
                         ),
-                        onPressed: () async {
-                          await downloadWallpaper(
-                              context, widget.currentWall.url!);
-                        },
+                        // onPressed: () async {
+                        //   await downloadWallpaper(
+                        //       context, widget.currentWall.url!);
+                        // },
                       ),
                       CustomButton(
                         backgroundColor: domiColor.withOpacity(0.6),

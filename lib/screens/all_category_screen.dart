@@ -7,7 +7,6 @@ import '../components/custom_button.dart';
 import '../components/custom_text.dart';
 import '../models/wall_model.dart';
 
-
 class AllCategoryScreen extends StatelessWidget {
   final List<String> categories;
   final List<String> categoryImagesUrl;
@@ -31,7 +30,7 @@ class AllCategoryScreen extends StatelessWidget {
             colors: [
               Theme.of(context).primaryColorDark,
               Theme.of(context).primaryColorLight,
-              Theme.of(context).backgroundColor,
+              Theme.of(context).canvasColor,
             ],
             // Colors.amber.shade100,
           ),

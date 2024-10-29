@@ -42,8 +42,8 @@ class _WallCardState extends State<WallCard> {
                 context,
                 MaterialPageRoute(
                     builder: (context) => WallDetailScreen(
+                          isswiper: false,
                           currentWall: widget.currentWall,
-
                         )));
           },
           child: Stack(
@@ -79,8 +79,8 @@ class _WallCardState extends State<WallCard> {
                       ),
                     ),
                     child: Padding(
-                      padding:
-                          const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 16),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -93,7 +93,8 @@ class _WallCardState extends State<WallCard> {
                               SizedBox(
                                 width: MediaQuery.of(context).size.width * 0.2,
                                 child: CustomText(
-                                  textName: widget.currentWall.name!.toUpperCase(),
+                                  textName:
+                                      widget.currentWall.name!.toUpperCase(),
                                   softWrap: true,
                                   textOverflow: TextOverflow.ellipsis,
                                   maxLines: 1,
@@ -107,8 +108,8 @@ class _WallCardState extends State<WallCard> {
                               SizedBox(
                                 width: MediaQuery.of(context).size.width * 0.15,
                                 child: CustomText(
-                                  textName:
-                                      widget.currentWall.category!.toUpperCase(),
+                                  textName: widget.currentWall.category!
+                                      .toUpperCase(),
                                   softWrap: true,
                                   textOverflow: TextOverflow.ellipsis,
                                   maxLines: 1,
@@ -132,7 +133,8 @@ class _WallCardState extends State<WallCard> {
                             ),
                             onPressed: () {
                               setState(() {
-                                if (favoriteIds.contains(widget.currentWall.id)) {
+                                if (favoriteIds
+                                    .contains(widget.currentWall.id)) {
                                   setState(() {
                                     removeItem(widget.currentWall.id!);
                                   });

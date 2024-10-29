@@ -30,15 +30,20 @@ class FavouritesScreen extends StatefulWidget {
 
 class _FavouritesScreenState extends State<FavouritesScreen> {
   List<WallModel> favoriteWalls = [];
-
+  late Future<List<WallModel>> futureobj;
   @override
   void initState() {
-    widget.snapshotF.data?.forEach((element) {
+    futureobj = futurefavwalls();
+    super.initState();
+  }
+
+  Future<List<WallModel>> futurefavwalls() async {
+    widget.snapshotF.data!.forEach((element) {
       if (favoriteIds.contains(element.id) && element.banner == 0) {
         favoriteWalls.add(element);
       }
     });
-    super.initState();
+    return favoriteWalls;
   }
 
   @override
@@ -56,7 +61,7 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
             colors: [
               Theme.of(context).primaryColorDark,
               Theme.of(context).primaryColorLight,
-              Theme.of(context).backgroundColor,
+              Theme.of(context).canvasColor,
             ],
           ),
         ),
@@ -154,8 +159,9 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => WallDetailScreen(
-                                              currentWall:
-                                                  favoriteWalls.elementAt(index),
+                                              isswiper: false,
+                                              currentWall: favoriteWalls
+                                                  .elementAt(index),
                                             )));
                               },
                               child: Stack(
@@ -174,14 +180,17 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                                     errorWidget: (context, url, error) =>
                                         const Center(child: Icon(Icons.error)),
                                     fit: BoxFit.cover,
-                                    imageUrl: favoriteWalls.elementAt(index).url!,
+                                    imageUrl:
+                                        favoriteWalls.elementAt(index).url!,
                                     imageBuilder: (context, imageProvider) {
                                       return Container(
                                         height:
-                                            MediaQuery.of(context).size.height * 0.4,
+                                            MediaQuery.of(context).size.height *
+                                                0.4,
                                         alignment: Alignment.bottomCenter,
                                         decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(20),
+                                          borderRadius:
+                                              BorderRadius.circular(20),
                                           image: DecorationImage(
                                             image: imageProvider,
                                             fit: BoxFit.cover,
@@ -204,10 +213,11 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                                                 mainAxisSize: MainAxisSize.min,
                                                 children: [
                                                   SizedBox(
-                                                    width: MediaQuery.of(context)
-                                                            .size
-                                                            .width *
-                                                        0.22,
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            0.22,
                                                     child: CustomText(
                                                       textName: favoriteWalls
                                                           .elementAt(index)
@@ -217,7 +227,8 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                                                       textOverflow:
                                                           TextOverflow.ellipsis,
                                                       maxLines: 1,
-                                                      fontWeight: FontWeight.w600,
+                                                      fontWeight:
+                                                          FontWeight.w600,
                                                       fontSize: 14,
                                                       // letterSpacing: -1,
                                                       textColor: Colors.white,
@@ -225,10 +236,11 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                                                   ),
                                                   const SizedBox(height: 6),
                                                   SizedBox(
-                                                    width: MediaQuery.of(context)
-                                                            .size
-                                                            .width *
-                                                        0.18,
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            0.18,
                                                     child: CustomText(
                                                       textName: favoriteWalls
                                                           .elementAt(index)
@@ -238,7 +250,8 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                                                       textOverflow:
                                                           TextOverflow.ellipsis,
                                                       maxLines: 1,
-                                                      fontWeight: FontWeight.w500,
+                                                      fontWeight:
+                                                          FontWeight.w500,
                                                       fontSize: 11,
                                                       textColor: Colors.white
                                                           .withOpacity(0.5),
@@ -247,14 +260,16 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                                                 ],
                                               ),
                                               CustomButton(
-                                                backgroundColor:
-                                                    Colors.white.withOpacity(0.12),
+                                                backgroundColor: Colors.white
+                                                    .withOpacity(0.12),
                                                 borderRadius: 32,
-                                                padding: const EdgeInsets.all(8),
+                                                padding:
+                                                    const EdgeInsets.all(8),
                                                 buttonContent: Icon(
-                                                  favoriteIds.contains(favoriteWalls
-                                                          .elementAt(index)
-                                                          .id)
+                                                  favoriteIds.contains(
+                                                          favoriteWalls
+                                                              .elementAt(index)
+                                                              .id)
                                                       ? Iconsax.heart5
                                                       : Iconsax.heart,
                                                   size: 22,
@@ -268,7 +283,8 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                                                           .id!);
                                                       favoriteWalls.remove(
                                                           favoriteWalls
-                                                              .elementAt(index));
+                                                              .elementAt(
+                                                                  index));
                                                     });
                                                   });
                                                 },
@@ -292,6 +308,8 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                 );
               }
             },
+            future: futureobj.whenComplete(
+                () => Future.delayed(const Duration(milliseconds: 700))),
           ),
         ),
       ),

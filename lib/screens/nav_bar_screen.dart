@@ -60,17 +60,16 @@ class _NavBarScreenState extends State<NavBarScreen> {
       backgroundColor: Theme.of(context).primaryColorDark,
       extendBodyBehindAppBar: true,
       body: PageView.builder(
-        controller: pageController,
-          onPageChanged: (int newIndex){
+          controller: pageController,
+          onPageChanged: (int newIndex) {
             setState(() {
               _currentIndex = newIndex;
             });
           },
           itemCount: 3,
           itemBuilder: (BuildContext context, int index) {
-        return pages[index];
-
-      }),
+            return pages[index];
+          }),
       bottomNavigationBar: ScrollToHideWidget(
         controller: controller,
         child: CustomNavigationBar(
@@ -88,7 +87,9 @@ class _NavBarScreenState extends State<NavBarScreen> {
           onTap: (int newIndex) {
             setState(() {
               _currentIndex = newIndex;
-              pageController.animateToPage(newIndex, duration: const Duration(milliseconds: 500), curve: Curves.fastOutSlowIn);
+              pageController.animateToPage(newIndex,
+                  duration: const Duration(milliseconds: 500),
+                  curve: Curves.fastOutSlowIn);
             });
           },
           items: [

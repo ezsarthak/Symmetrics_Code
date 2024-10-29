@@ -71,6 +71,7 @@ class _SwiperCarouselState extends State<SwiperCarousel> {
                           context,
                           MaterialPageRoute(
                               builder: ((context) => WallDetailScreen(
+                                    isswiper: true,
                                     currentWall: swiper.elementAt(index),
                                   ))));
                       // String url = swiper.elementAt(newIndex).bannerLaunchUrl!;

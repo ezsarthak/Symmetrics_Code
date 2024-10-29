@@ -21,7 +21,7 @@ class CategoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 12),
+      padding: const EdgeInsets.only(bottom: 16),
       child: GestureDetector(
         onTap: () {
           Navigator.push(
@@ -72,14 +72,14 @@ class CategoryCard extends StatelessWidget {
                         //   color: Theme.of(context).primaryColorDark,
                         // ),
                         borderRadius: BorderRadius.circular(20),
-
                       ),
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 6),
+                          horizontal: 16, vertical: 16),
                       alignment: Alignment.bottomLeft,
                       child: CustomText(
                         textName: categories.elementAt(index).toUpperCase(),
                         fontSize: 32,
+                        letterSpacing: 4,
                         textColor: Colors.white,
                         fontWeight: FontWeight.bold,
                       ),

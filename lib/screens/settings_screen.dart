@@ -36,7 +36,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             colors: [
               Theme.of(context).primaryColorDark,
               Theme.of(context).primaryColorLight,
-              Theme.of(context).backgroundColor,
+              Theme.of(context).canvasColor,
             ],
             // Colors.amber.shade100,
           ),
@@ -196,7 +196,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           },
                           buttonContent: CustomText(
                             textName: "Light",
-                            textColor: Theme.of(context).accentColor,
+                            textColor: Theme.of(context).hintColor,
                             fontSize: 20,
                           )),
                       CustomButton(
@@ -281,7 +281,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       ),
                     ),
                     onTap: () async {
-
                       String uri =
                           'https://play.google.com/store/apps/details?id=dev.sarthak.symmetrics&hl=en-US&ah=PulkBdlLgWInFlz21YErqShEXLI';
                       if (await canLaunch(uri)) {
