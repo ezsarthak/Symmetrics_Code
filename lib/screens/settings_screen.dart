@@ -225,7 +225,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   items: [
                     CustomSettingsTile(
                       title: 'Know More',
-                      subtitle: 'via Twitter, Telegram',
+                      subtitle: 'via Twitter, Linkedin',
                       onTap: () => Navigator.push(
                           context,
                           CupertinoPageRoute(

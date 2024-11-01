@@ -20,6 +20,6 @@ class UserSimplePrefs {
 
   Future<bool> getTheme() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getBool(themeStatus) ?? false;
+    return prefs.getBool(themeStatus) ?? true;
   }
 }

@@ -8,14 +8,13 @@ import '../components/custom_text.dart';
 import '../components/settings_panel.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../components/custom_button.dart';
+import '../components/snackbar.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    String url =
-        "https://raw.githubusercontent.com/SarthakDesigns/WallAssests/main/portrait-homme__1_-removebg-preview.png";
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColorDark,
@@ -90,104 +89,111 @@ class AboutScreen extends StatelessWidget {
           clipBehavior: Clip.none,
           padding: const EdgeInsets.only(left: 18, right: 18),
           children: [
-            Entry.all(
-              delay: const Duration(milliseconds: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  CircleAvatar(
-                    backgroundColor: Colors.transparent,
-                    backgroundImage: CachedNetworkImageProvider(url),
-                    radius: MediaQuery.of(context).size.width * 0.2,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      CustomText(
-                        textName: "Sarthak Designs",
-                        fontSize: 18,
-                        textColor:
-                            Theme.of(context).textTheme.labelLarge!.color,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      const SizedBox(
-                        height: 8,
-                      ),
-                      CustomText(
-                        textName: "Wallpapers Designer",
-                        fontSize: 15,
-                        textColor:
-                            Theme.of(context).textTheme.labelMedium!.color,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            SettingsPanel(panelName: "Social Accounts", items: [
-              CustomSettingsTile(
-                  title: "Twitter",
-                  trailing: CustomButton(
-                    backgroundColor: Colors.transparent,
-                    // padding: const EdgeInsets.all(10),
-                    buttonContent: Icon(
-                      Iconsax.send_2,
-                      size: 32,
-                      color: Theme.of(context).primaryColor.withOpacity(0.7),
-                    ),
-                  ),
-                  onTap: () async {
-                    const url = "https://twitter.com/SarthakDesigns";
-                    if (await canLaunch(url)) {
-                      await launch(url);
-                    }
-                  }),
-              const SizedBox(
-                height: 12,
-              ),
-              CustomSettingsTile(
-                title: "Telegram",
-                trailing: CustomButton(
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                // Container(
+                //   height: MediaQuery.of(context).size.width * 0.7,
+                //   width: MediaQuery.of(context).size.width * 0.7,
+                //   decoration: BoxDecoration(
+                //       borderRadius: BorderRadius.circular(16),
+                //       image: const DecorationImage(
+                //           image: AssetImage("assets/prf_pic.jpg"))),
+                // ),
+                CircleAvatar(
                   backgroundColor: Colors.transparent,
-                  // padding: const EdgeInsets.all(10),
-                  buttonContent: Icon(
-                    Iconsax.send_2,
-                    size: 32,
-                    color: Theme.of(context).primaryColor.withOpacity(0.7),
+                  backgroundImage: const AssetImage("assets/prf_pic.jpg"),
+                  radius: MediaQuery.of(context).size.width * 0.32,
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                CustomText(
+                  textName: "Sarthak Patil",
+                  fontSize: 28,
+                  textColor: Theme.of(context).textTheme.labelLarge!.color,
+                  fontWeight: FontWeight.bold,
+                ),
+                const SizedBox(
+                  height: 48,
+                ),
+                Entry.all(
+                  delay: const Duration(milliseconds: 20),
+                  child: GestureDetector(
+                    onTap: () async {
+                      String uri = 'https://linkedin.com/in/sarthaknpatil';
+                      if (await canLaunch(uri)) {
+                        await launch(uri);
+                      } else {
+                        getSnackBar(context, "No Browser found");
+                        print("No Browser found");
+                      }
+                    },
+                    child: Container(
+                      height: MediaQuery.of(context).size.width * 0.2,
+                      width: MediaQuery.of(context).size.width * 0.5,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16),
+                          image: const DecorationImage(
+                              fit: BoxFit.contain,
+                              image: AssetImage("assets/Linkedin.png"))),
+                    ),
                   ),
                 ),
-                onTap: () async {
-                  const url = "https://t.me/Wallery_Walls";
-                  if (await canLaunch(url)) {
-                    await launch(url);
-                  }
-                },
-              ),
-              const SizedBox(
-                height: 12,
-              ),
-              CustomSettingsTile(
-                  title: "Instagram",
-                  trailing: CustomButton(
-                    backgroundColor: Colors.transparent,
-                    // padding: const EdgeInsets.all(10),
-                    buttonContent: Icon(
-                      Iconsax.send_2,
-                      size: 32,
-                      color: Theme.of(context).primaryColor.withOpacity(0.7),
+                const SizedBox(
+                  height: 20,
+                ),
+                Entry.all(
+                  delay: const Duration(milliseconds: 20),
+                  child: GestureDetector(
+                    onTap: () async {
+                      String uri = 'https://x.com/ezsarthak';
+                      if (await canLaunch(uri)) {
+                        await launch(uri);
+                      } else {
+                        getSnackBar(context, "No Browser found");
+                        print("No Browser found");
+                      }
+                    },
+                    child: Container(
+                      height: MediaQuery.of(context).size.width * 0.2,
+                      width: MediaQuery.of(context).size.width * 0.5,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16),
+                          image: const DecorationImage(
+                              fit: BoxFit.contain,
+                              image: AssetImage("assets/Twitter.png"))),
                     ),
                   ),
-                  onTap: () async {
-                    const url = "https://www.instagram.com/sarthak_designs";
-                    if (await canLaunch(url)) {
-                      await launch(url);
-                    }
-                  }),
-            ])
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Entry.all(
+                  delay: const Duration(milliseconds: 20),
+                  child: GestureDetector(
+                    onTap: () async {
+                      String uri = 'https://github.com/ezsarthak';
+                      if (await canLaunch(uri)) {
+                        await launch(uri);
+                      } else {
+                        getSnackBar(context, "No Browser found");
+                        print("No Browser found");
+                      }
+                    },
+                    child: Container(
+                      height: MediaQuery.of(context).size.width * 0.2,
+                      width: MediaQuery.of(context).size.width * 0.5,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16),
+                          image: const DecorationImage(
+                              fit: BoxFit.contain,
+                              image: AssetImage("assets/Github.png"))),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),
