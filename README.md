@@ -23,13 +23,13 @@ Symmetrics is a beautiful and feature-rich wallpaper app available on the Google
     </td>
     <td>
       <div style="text-align: center; font-size: 24px;font-weight: 600;">Wallpaper Detail Screen</div>
-      <img src="https://github.com/ezsarthak/Symmetrics_API/blob/main/image%201.png" width="200">
+      <img src="https://github.com/ezsarthak/Symmetrics_API/blob/main/image%202.png" width="200">
     </td>
   </tr>
   <tr>
     <td>
       <div style="text-align: center; font-size: 24px;font-weight: 600;">Favorites Screen</div>
-      <img src="https://github.com/ezsarthak/Symmetrics_API/blob/main/image.png" width="200">
+      <img src="https://github.com/ezsarthak/Symmetrics_API/blob/main/fav.png" width="200">
     </td>
     <td>
       <div style="text-align: center; font-size: 24px;font-weight: 600;">Settings Screen</div>

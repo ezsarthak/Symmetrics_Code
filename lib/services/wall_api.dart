@@ -6,10 +6,9 @@ import '../models/wall_model.dart';
 class WallApi {
   static Future<List<WallModel>> getPhotos() async {
     const wallUrl =
-        'https://github.com/ezsarthak/Symmetrics_API/blob/main/main.json';
+        'https://raw.githubusercontent.com/ezsarthak/Symmetrics_API/refs/heads/main/main.json';
     final response = await http.get(Uri.parse(wallUrl));
     // debugPrint("URL: ${Uri.encodeFull(wallUrl)}");
-
     if (response.statusCode == 200) {
       debugPrint('Response Code : ${response.statusCode}');
       // debugPrint('Wall Data: $data');
