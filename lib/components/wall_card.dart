@@ -42,6 +42,7 @@ class _WallCardState extends State<WallCard> {
                 context,
                 MaterialPageRoute(
                     builder: (context) => WallDetailScreen(
+                          herotag: widget.currentWall.id!,
                           isswiper: false,
                           currentWall: widget.currentWall,
                         )));

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:main_symmetrics/constants/dimensions.dart';
-import 'package:main_symmetrics/screens/nav_bar_screen.dart';
+import '../constants/dimensions.dart';
+import '../screens/nav_bar_screen.dart';
 import '../models/wall_model.dart';
 import '../services/wall_api.dart';
 
@@ -35,8 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
             return NavBarScreen(
               snapshot: snapshot,
             );
-          }
-          else {
+          } else {
             return SizedBox(
               height: MediaQuery.of(context).size.height,
               child: Center(

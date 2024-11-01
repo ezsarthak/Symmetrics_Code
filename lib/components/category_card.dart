@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:main_symmetrics/components/custom_text.dart';
+import '../components/custom_text.dart';
 import '../models/wall_model.dart';
 import '../screens/category_wall_screen.dart';
 
@@ -21,7 +21,7 @@ class CategoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 16),
+      padding: const EdgeInsets.only(top: 8, bottom: 10),
       child: GestureDetector(
         onTap: () {
           Navigator.push(

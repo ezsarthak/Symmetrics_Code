@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:main_symmetrics/constants/app_colors.dart';
+import '../constants/app_colors.dart';
 
 class CustomButton extends StatelessWidget {
   final Widget buttonContent;
@@ -24,7 +24,7 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     const double defaultBorderRadius = 16;
     return InkWell(
-      onTap: onPressed ?? () {},
+      onTap: onPressed,
       child: Container(
         margin: margin ?? const EdgeInsets.all(0),
         padding: padding ?? const EdgeInsets.all(12),
@@ -35,13 +35,10 @@ class CustomButton extends StatelessWidget {
           color: backgroundColor ?? AppColors.secondaryLight,
         ),
         child: Material(
+          borderRadius:
+              BorderRadius.circular(borderRadius ?? defaultBorderRadius),
           color: Colors.transparent,
-          child: InkWell(
-            onTap: onPressed ?? () {},
-            borderRadius:
-                BorderRadius.circular(borderRadius ?? defaultBorderRadius),
-            child: buttonContent,
-          ),
+          child: buttonContent,
         ),
       ),
     );

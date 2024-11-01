@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:main_symmetrics/constants/dimensions.dart';
-import 'package:main_symmetrics/screens/wall_detail_page_screen.dart';
+import '../constants/dimensions.dart';
+import '../screens/wall_detail_page_screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../components/custom_text.dart';
@@ -64,7 +64,7 @@ class _SwiperCarouselState extends State<SwiperCarousel> {
               itemBuilder:
                   (BuildContext context, int index, int pageViewIndex) {
                 return Hero(
-                  tag: swiper.elementAt(index).id!,
+                  tag: "${swiper.elementAt(index).id!}123",
                   child: GestureDetector(
                     onTap: () {
                       Navigator.push(
@@ -72,6 +72,8 @@ class _SwiperCarouselState extends State<SwiperCarousel> {
                           MaterialPageRoute(
                               builder: ((context) => WallDetailScreen(
                                     isswiper: true,
+                                    herotag:
+                                        "${swiper.elementAt(index).id!}123",
                                     currentWall: swiper.elementAt(index),
                                   ))));
                       // String url = swiper.elementAt(newIndex).bannerLaunchUrl!;

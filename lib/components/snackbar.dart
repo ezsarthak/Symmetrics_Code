@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:main_symmetrics/components/custom_text.dart';
-import 'package:main_symmetrics/constants/app_colors.dart';
+import '../components/custom_text.dart';
+import '../constants/app_colors.dart';
 
 void getSnackBar(BuildContext context, String title) {
   ScaffoldMessenger.of(context)

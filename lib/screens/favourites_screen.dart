@@ -160,6 +160,9 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                                     MaterialPageRoute(
                                         builder: (context) => WallDetailScreen(
                                               isswiper: false,
+                                              herotag: favoriteWalls
+                                                  .elementAt(index)
+                                                  .id!,
                                               currentWall: favoriteWalls
                                                   .elementAt(index),
                                             )));

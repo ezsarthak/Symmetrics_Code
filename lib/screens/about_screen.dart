@@ -3,9 +3,9 @@ import 'package:entry/entry.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:main_symmetrics/components/custom_settings_tile.dart';
-import 'package:main_symmetrics/components/custom_text.dart';
-import 'package:main_symmetrics/components/settings_panel.dart';
+import '../components/custom_settings_tile.dart';
+import '../components/custom_text.dart';
+import '../components/settings_panel.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../components/custom_button.dart';
 

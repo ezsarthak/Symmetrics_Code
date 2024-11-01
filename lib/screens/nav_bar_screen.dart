@@ -1,8 +1,8 @@
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:main_symmetrics/screens/all_wall_screen.dart';
-import 'package:main_symmetrics/screens/favourites_screen.dart';
+import '../screens/all_wall_screen.dart';
+import '../screens/favourites_screen.dart';
 import '../constants/app_colors.dart';
 import '../models/wall_model.dart';
 import '../utils/scroll_to_hide.dart';

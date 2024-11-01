@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:main_symmetrics/screens/category_wall_screen.dart';
-import 'package:main_symmetrics/utils/extensions.dart';
+import '../screens/category_wall_screen.dart';
+import '../utils/extensions.dart';
 import '../components/category_card.dart';
 import '../components/custom_text.dart';
 import '../models/wall_model.dart';

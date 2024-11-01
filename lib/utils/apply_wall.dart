@@ -1,22 +1,26 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:image_cropper/image_cropper.dart';
-import 'package:main_symmetrics/components/custom_text.dart';
-import 'package:main_symmetrics/components/snackbar.dart';
-import 'package:wallpaper_manager_flutter/wallpaper_manager_flutter.dart';
+import 'package:wallpaper_manager_plus/wallpaper_manager_plus.dart';
+import '../components/custom_text.dart';
+import '../components/snackbar.dart';
 
 enum SetWallpaperAs { home, lock, both }
 
 const _setAs = {
-  SetWallpaperAs.home: WallpaperManagerFlutter.HOME_SCREEN,
-  SetWallpaperAs.lock: WallpaperManagerFlutter.LOCK_SCREEN,
-  SetWallpaperAs.both: WallpaperManagerFlutter.BOTH_SCREENS,
+  SetWallpaperAs.home: WallpaperManagerPlus.homeScreen,
+  SetWallpaperAs.lock: WallpaperManagerPlus.lockScreen,
+  SetWallpaperAs.both: WallpaperManagerPlus.bothScreens,
 };
 
 Future<void> setWallpaper({
   required BuildContext context,
   required String imgUrl,
+  required Color bg,
+  required Color accent,
 }) async {
   var actionSheet = CupertinoActionSheet(
     title: Center(
@@ -70,8 +74,9 @@ Future<void> setWallpaper({
   );
 
   var option = await showCupertinoModalPopup(
-    barrierColor: Colors.black26,
-      context: context, builder: (context) => actionSheet);
+      barrierColor: Colors.black26,
+      context: context,
+      builder: (context) => actionSheet);
 
   if (option != null && option != "Cancel") {
     var cachedImg = await DefaultCacheManager().getSingleFile(imgUrl);
@@ -91,13 +96,67 @@ Future<void> setWallpaper({
       );
 
       if (croppedImg != null) {
-        await WallpaperManagerFlutter()
-            .setwallpaperfromFile(croppedImg, _setAs[option]);
-        getSnackBar(context, "Set Successful");
+        File croppedFile = File(croppedImg.path);
+        await WallpaperManagerPlus().setWallpaper(croppedFile, _setAs[option]!);
+        // getSnackBar(context, "Set Successful");
+        showSnackbar(context, bg, accent);
         // if (result != null) {
         //   debugPrint(result);
         // }
       }
     }
   }
+}
+
+void showSnackbar(BuildContext context, Color bg, Color accent) {
+  var dialog = AlertDialog(
+    backgroundColor: bg.withOpacity(0.7),
+    // title: CustomText(
+    //   textName: "Disclaimer",
+    //   fontSize: 20,
+    //   textColor: Theme.of(context).textTheme.labelLarge!.color,
+    //   fontWeight: FontWeight.bold,
+    // ),
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(
+        Radius.circular(25.0),
+      ),
+    ),
+    content: SizedBox(
+      height: 150,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          CustomText(
+              fontWeight: FontWeight.w600,
+              fontSize: 28,
+              maxLines: 10,
+              textColor: accent,
+              textName: "Set Successful"),
+          const SizedBox(
+            height: 12,
+          ),
+          Center(
+            child: TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Container(
+                height: 70,
+                width: 120,
+                decoration: BoxDecoration(
+                    color: bg, borderRadius: BorderRadius.circular(20)),
+                child: Center(
+                  child: CustomText(
+                    textName: "OKAY",
+                    textColor: accent,
+                    fontSize: 12,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+  showDialog(context: context, builder: (BuildContext context) => dialog);
 }
