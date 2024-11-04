@@ -71,12 +71,3 @@ Contributions are welcome! If you find any bugs or have suggestions for new feat
 
 ### Reporting Bugs and Requesting Features
 If you encounter a bug or have a suggestion for a new feature, please [open an issue](https://github.com/ezsarthak/Symmetrics_Code/issues/new). Provide as much detail as possible, including clear reproduction steps if it's a bug. This helps us better understand and address the problem or request.
-
-1. **Fork** this repository to your GitHub account.
-2. **Clone** your forked repository locally.
-3. **Create a new branch** for your changes: `git checkout -b your-branch-name`.
-4. Implement your changes.
-5. **Test** your changes thoroughly to verify everything works correctly.
-6. Commit your work with a detailed message: `git commit -m "Description of changes"`.
-7. **Push** your branch to your GitHub fork: `git push origin your-branch-name`.
-8. Submit a **pull request** to the main repository's `main` branch, describing the purpose and scope of your changes.
