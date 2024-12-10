@@ -2,6 +2,8 @@
 
 Symmetrics is a beautiful and feature-rich wallpaper app available on the Google Play Store. It provides a vast collection of high-quality wallpapers in various categories, allowing users to personalize their device's home screen and lock screen.
 
+https://bit.ly/Symmetrics_link
+
 ## Features
 
 - **Extensive Wallpaper Collection:** Explore a wide variety of wallpapers in different categories, including nature, abstract, landscapes, and more.
