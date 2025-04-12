@@ -17,28 +17,14 @@ https://bit.ly/Symmetrics_link
 - **Regular Updates:** The app is regularly updated with new features, improvements, and bug fixes.
 
 ## UI Preview
-<table border="0">
-  <tr>
-    <td>
-      <div style="text-align: center; font-size: 24px;font-weight: 600;">Home Screen</div>
-      <img src="https://github.com/ezsarthak/Symmetrics_API/blob/main/image5.png" width="200">
-    </td>
-    <td>
-      <div style="text-align: center; font-size: 24px;font-weight: 600;">Wallpaper Detail Screen</div>
-      <img src="https://github.com/ezsarthak/Symmetrics_API/blob/main/image%202.png" width="200">
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <div style="text-align: center; font-size: 24px;font-weight: 600;">Favorites Screen</div>
-      <img src="https://github.com/ezsarthak/Symmetrics_API/blob/main/fav.png" width="200">
-    </td>
-    <td>
-      <div style="text-align: center; font-size: 24px;font-weight: 600;">Settings Screen</div>
-      <img src="https://github.com/ezsarthak/Symmetrics_API/blob/main/image%201.png" width="200">
-    </td>
-  </tr>
-</table>
+<p align="center">
+  <img src="https://github.com/ezsarthak/Symmetrics_API/blob/main/image5.png" alt="Home Screen" width="200"/>
+  <img src="https://github.com/ezsarthak/Symmetrics_API/blob/main/image%202.png" alt="Wallpaper Screen" width="200"/>
+    <img src="https://github.com/ezsarthak/Symmetrics_API/blob/main/fav.png" alt="Favorites Screen" width="200"/>
+  <img src="https://github.com/ezsarthak/Symmetrics_API/blob/main/image%201.png" alt="Settings Screen" width="200"/>
+  
+</p>
+
 
 ## Installation
 
